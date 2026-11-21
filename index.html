@@ -9,7 +9,7 @@
     <title>abenezer@portfolio</title>
 
     <style type="text/tailwindcss">
-    @theme {
+        @theme {
       --color-term-bg: #0a0a0a;
       --color-term-panel: #111111;
       --color-term-border: #1f2937;
@@ -46,9 +46,8 @@
             <!-- Desktop Links -->
             <div class="hidden sm:flex items-center gap-6 text-term-muted">
                 <a href="index.html" class="text-term-green font-medium">~/home</a>
-                <a href="about.html" class="hover:text-term-green transition">~/about</a>
-                <a href="projects.html" class="hover:text-term-green transition">~/projects</a>
-                <a href="contact.html" class="hover:text-term-green transition">~/contact</a>
+                <a href="index.html#projects" class="hover:text-term-green transition">~/projects</a>
+                <a href="index.html#contact" class="hover:text-term-green transition">~/contact</a>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -63,9 +62,8 @@
         <div x-show="mobileOpen" x-transition
             class="sm:hidden border-t border-term-border bg-term-panel px-6 py-4 flex flex-col gap-3 text-sm text-term-muted">
             <a href="index.html" class="text-term-green font-medium">~/home</a>
-            <a href="about.html" class="hover:text-term-green transition">~/about</a>
-            <a href="projects.html" class="hover:text-term-green transition">~/projects</a>
-            <a href="contact.html" class="hover:text-term-green transition">~/contact</a>
+            <a href="index.html#projects" class="hover:text-term-green transition">~/projects</a>
+            <a href="index.html#contact" class="hover:text-term-green transition">~/contact</a>
         </div>
     </header>
 
@@ -73,14 +71,14 @@
     <main class="max-w-4xl mx-auto px-6 flex-1 w-full">
 
         <!-- 1. Hero Section -->
-        <section class="py-16 md:py-24 border-b border-term-border" x-data="{ showSpecs: false }">
+        <section id="about" class="py-16 md:py-24 border-b border-term-border" x-data="{ showSpecs: false }">
             <div
                 class="inline-flex items-center gap-2 px-3 py-1 rounded border border-term-border bg-term-panel text-xs text-term-muted mb-6">
                 <span class="w-2 h-2 rounded-full bg-term-green"></span>
                 <span>STATUS: ONLINE // CS GRAD &amp; IT OFFICER</span>
             </div>
 
-            <p class="text-sm text-term-green mb-2">$ cat ./introduction.txt</p>
+            <p class="text-sm text-term-green mb-2">$ cat ./About.txt</p>
 
             <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
                 Hi, I'm Abenezer<span class="text-term-green cursor-blink">_</span>
@@ -104,7 +102,7 @@
                     <span x-text="showSpecs ? '$ hide --specs' : '$ whoami --specs'"></span>
                 </button>
 
-                <a href="contact.html"
+                <a href="index.html#contact"
                     class="px-3 py-2.5 text-term-muted hover:text-term-green transition underline underline-offset-4">
                     get-in-touch -&gt;
                 </a>
@@ -167,9 +165,7 @@
         </section>
 
         <!-- 3. Featured Projects Preview -->
-        <section
-  class="py-14"
-  x-data="{
+        <section id="projects" class="py-14" x-data="{
     projects: [],
     loading: true,
     error: null,
@@ -192,81 +188,107 @@
           this.loading = false;
         });
     }
-  }"
->
-  <div class="flex items-center justify-between mb-8">
+  }">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-sm uppercase tracking-wider text-term-green">
+                    $ grep -i "featured: true" ./data/projects.json
+                </h2>
+                <a href="projects.html" class="text-xs text-term-muted hover:text-term-green transition">
+                    view all projects -&gt;
+                </a>
+            </div>
+
+            <!-- Loading State -->
+            <p x-show="loading" class="text-xs text-term-muted">
+                // loading featured projects...
+            </p>
+
+            <!-- Error State -->
+            <div x-show="!loading && error"
+                class="p-4 rounded border border-red-500/40 bg-term-panel text-xs text-red-400"
+                x-text="'[error] ' + error"></div>
+
+            <!-- Featured Projects Grid -->
+            <div x-show="!loading && !error" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <template x-for="project in featuredProjects" :key="project.id">
+                    <article
+                        class="p-6 rounded border border-term-border bg-term-panel flex flex-col justify-between hover:border-term-green/60 transition">
+                        <div>
+
+                            <template x-if="project.image">
+
+                            </template>
+
+                            <div class="flex items-center justify-between text-xs text-term-muted mb-3">
+                                <span class="text-term-green" x-text="project.tag"></span>
+                                <span x-text="project.status || project.year"></span>
+                            </div>
+
+                            <h3 class="text-lg font-semibold text-white" x-text="project.title"></h3>
+
+                            <p class="mt-2 text-sm text-term-muted leading-relaxed" x-text="project.summary"></p>
+                        </div>
+
+                        <div
+                            class="mt-6 pt-4 border-t border-term-border flex items-center justify-between gap-4 text-xs">
+                            <span class="text-term-muted" x-text="project.stack.join(' · ')"></span>
+
+                            <div class="flex items-center gap-3 shrink-0">
+                                <template x-if="project.liveUrl">
+                                    <a :href="project.liveUrl" target="_blank" rel="noopener noreferrer"
+                                        class="text-term-green hover:underline">
+                                        [live]
+                                    </a>
+                                </template>
+
+                                <a :href="project.repoUrl" target="_blank" rel="noopener noreferrer"
+                                    class="text-term-green hover:underline">
+                                    [source]
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </section>
+
+        <section id="contact" class="py-14 border-t border-term-border scroll-mt-20">
+  <div class="flex items-center justify-between mb-6">
     <h2 class="text-sm uppercase tracking-wider text-term-green">
-      $ grep -i "featured: true" ./data/projects.json
+      $ cat ./contact.txt
     </h2>
-    <a href="projects.html" class="text-xs text-term-muted hover:text-term-green transition">
-      view all projects -&gt;
-    </a>
+    <span class="text-xs text-term-muted">OPEN TO OPPORTUNITIES</span>
   </div>
 
-  <!-- Loading State -->
-  <p x-show="loading" class="text-xs text-term-muted">
-    // loading featured projects...
-  </p>
+  <div class="p-6 rounded border border-term-border bg-term-panel space-y-4 text-sm">
+    <!-- Phone -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 pb-3 border-b border-term-border/70">
+      <span class="text-term-muted">PHONE</span>
+      <a href="tel:+251900000000" class="text-term-text hover:text-term-green transition">
+        +251 90 000 0000
+      </a>
+    </div>
 
-  <!-- Error State -->
-  <div
-    x-show="!loading && error"
-    class="p-4 rounded border border-red-500/40 bg-term-panel text-xs text-red-400"
-    x-text="'[error] ' + error"
-  ></div>
+    <!-- Clickable Email (opens default mail client/page via mailto:) -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 pb-3 border-b border-term-border/70">
+      <span class="text-term-muted">EMAIL</span>
+      <a href="mailto:abenezer@example.com" class="text-term-green hover:underline underline-offset-4">
+        abenezer@example.com
+      </a>
+    </div>
 
-  <!-- Featured Projects Grid -->
-  <div
-    x-show="!loading && !error"
-    class="grid grid-cols-1 md:grid-cols-2 gap-6"
-  >
-    <template x-for="project in featuredProjects" :key="project.id">
-      <article
-        class="p-6 rounded border border-term-border bg-term-panel flex flex-col justify-between hover:border-term-green/60 transition"
+    <!-- Telegram Username -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+      <span class="text-term-muted">TELEGRAM</span>
+      <a
+        href="https://t.me/abenezer_username"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-term-text hover:text-term-green transition"
       >
-        <div>
-          <!-- Optional Showcase Image (static/<id>.png) -->
-          <template x-if="project.image">
-           
-          </template>
-
-          <div class="flex items-center justify-between text-xs text-term-muted mb-3">
-            <span class="text-term-green" x-text="project.tag"></span>
-            <span x-text="project.status || project.year"></span>
-          </div>
-
-          <h3 class="text-lg font-semibold text-white" x-text="project.title"></h3>
-
-          <p class="mt-2 text-sm text-term-muted leading-relaxed" x-text="project.summary"></p>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-term-border flex items-center justify-between gap-4 text-xs">
-          <span class="text-term-muted" x-text="project.stack.join(' · ')"></span>
-
-          <div class="flex items-center gap-3 shrink-0">
-            <template x-if="project.liveUrl">
-              <a
-                :href="project.liveUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-term-green hover:underline"
-              >
-                [live]
-              </a>
-            </template>
-
-            <a
-              :href="project.repoUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-term-green hover:underline"
-            >
-              [source]
-            </a>
-          </div>
-        </div>
-      </article>
-    </template>
+        @abenezer_username
+      </a>
+    </div>
   </div>
 </section>
 
@@ -281,8 +303,8 @@
             <div class="flex items-center gap-5">
                 <a href="https://github.com/Abenezzer" target="_blank"
                     class="hover:text-term-green transition">GitHub</a>
-                <a href="about.html" class="hover:text-term-green transition">About</a>
-                <a href="contact.html" class="hover:text-term-green transition">Contact</a>
+                <a href="index.html#about" class="hover:text-term-green transition">About</a>
+               
             </div>
         </div>
     </footer>
