@@ -1,16 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-      <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-      <link rel="stylesheet" type="text/tailwindcss" href="theme.css" />
-    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>abenezer@portfolio</title>
+
+    <style type="text/tailwindcss">
+    @theme {
+      --color-term-bg: #0a0a0a;
+      --color-term-panel: #111111;
+      --color-term-border: #1f2937;
+      --color-term-green: #22c55e;
+      --color-term-green-dim: #16a34a;
+      --color-term-text: #e4e4e7;
+      --color-term-muted: #a1a1aa;
+      --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .cursor-blink {
+      animation: blink 1.1s infinite;
+    }
+  </style>
 </head>
-<body>
-    <h1 class="text-blue-500">Hello World</h1>
-    <h2>another test</h2>
-    <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
+
+<body
+    class="bg-term-bg text-term-text font-mono antialiased selection:bg-term-green selection:text-term-bg flex flex-col min-h-screen">
+
+    <!-- Top Navigation (Multi-Page Ready + Alpine Mobile Toggle) -->
+    <header x-data="{ mobileOpen: false }"
+        class="border-b border-term-border sticky top-0 bg-term-bg/95 backdrop-blur-sm z-20">
+        <nav class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between text-sm">
+            <!-- Brand / Prompt -->
+            <a href="index.html" class="text-term-green font-semibold tracking-tight hover:opacity-80 transition">
+                abenezer@portfolio<span class="text-term-muted">:~$</span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden sm:flex items-center gap-6 text-term-muted">
+                <a href="index.html" class="text-term-green font-medium">~/home</a>
+                <a href="about.html" class="hover:text-term-green transition">~/about</a>
+                <a href="projects.html" class="hover:text-term-green transition">~/projects</a>
+                <a href="contact.html" class="hover:text-term-green transition">~/contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button @click="mobileOpen = !mobileOpen"
+                class="sm:hidden px-2.5 py-1 border border-term-border rounded text-xs text-term-muted hover:text-term-green hover:border-term-green transition cursor-pointer"
+                aria-label="Toggle Menu">
+                <span x-text="mobileOpen ? '[x]' : '[menu]'"></span>
+            </button>
+        </nav>
+
+        <!-- Mobile Dropdown Links -->
+        <div x-show="mobileOpen" x-transition
+            class="sm:hidden border-t border-term-border bg-term-panel px-6 py-4 flex flex-col gap-3 text-sm text-term-muted">
+            <a href="index.html" class="text-term-green font-medium">~/home</a>
+            <a href="about.html" class="hover:text-term-green transition">~/about</a>
+            <a href="projects.html" class="hover:text-term-green transition">~/projects</a>
+            <a href="contact.html" class="hover:text-term-green transition">~/contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 flex-1 w-full">
+
+        <!-- 1. Hero Section -->
+        <section class="py-16 md:py-24 border-b border-term-border" x-data="{ showSpecs: false }">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded border border-term-border bg-term-panel text-xs text-term-muted mb-6">
+                <span class="w-2 h-2 rounded-full bg-term-green"></span>
+                <span>STATUS: ONLINE // CS GRAD &amp; IT OFFICER</span>
+            </div>
+
+            <p class="text-sm text-term-green mb-2">$ cat ./introduction.txt</p>
+
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+                Hi, I'm Abenezer<span class="text-term-green cursor-blink">_</span>
+            </h1>
+
+            <p class="mt-5 text-base md:text-lg text-term-muted leading-relaxed max-w-2xl">
+                Computer Science graduate currently working as an <span class="text-term-text">IT Officer</span>.
+                I maintain dependable infrastructure, troubleshoot complex systems, and build clean, lightweight
+                software tools.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="mt-8 flex flex-wrap items-center gap-4 text-sm">
+                <a href="projects.html"
+                    class="px-5 py-2.5 bg-term-green text-term-bg font-semibold rounded hover:bg-term-green-dim transition">
+                    ./view-projects.sh
+                </a>
+
+                <button @click="showSpecs = !showSpecs"
+                    class="px-5 py-2.5 border border-term-border bg-term-panel text-term-text rounded hover:border-term-green hover:text-term-green transition cursor-pointer">
+                    <span x-text="showSpecs ? '$ hide --specs' : '$ whoami --specs'"></span>
+                </button>
+
+                <a href="contact.html"
+                    class="px-3 py-2.5 text-term-muted hover:text-term-green transition underline underline-offset-4">
+                    get-in-touch -&gt;
+                </a>
+            </div>
+
+            <!-- Interactive System Specs Panel -->
+            <div x-show="showSpecs" x-transition
+                class="mt-8 p-5 rounded border border-term-border bg-term-panel text-xs md:text-sm space-y-2 text-term-muted">
+                <p class="text-term-green font-semibold">// SYSTEM &amp; STACK OVERVIEW</p>
+                <p><span class="text-term-text">Role:</span> IT Officer &amp; Software Developer</p>
+                <p><span class="text-term-text">Education:</span> B.Sc. in Computer Science</p>
+                <p><span class="text-term-text">Core Domains:</span> Systems Administration, Networking, Web
+                    Development, Scripting</p>
+                <p><span class="text-term-text">Tools:</span> Linux, Git, HTML/Tailwind CSS, Alpine.js, Python/Bash</p>
+            </div>
+        </section>
+
+        <!-- 2. Core Capabilities Strip -->
+        <section class="py-14 border-b border-term-border">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-sm uppercase tracking-wider text-term-green">
+                    $ ls ./capabilities
+                </h2>
+                <a href="about.html" class="text-xs text-term-muted hover:text-term-green transition">
+                    cat ./about.md -&gt;
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- Card 1 -->
+                <div class="p-5 rounded border border-term-border bg-term-panel hover:border-term-green/60 transition">
+                    <p class="text-xs text-term-green mb-2">[01] INFRASTRUCTURE</p>
+                    <h3 class="text-base font-semibold text-white">IT Operations &amp; Support</h3>
+                    <p class="mt-2 text-sm text-term-muted leading-relaxed">
+                        Hardware/network troubleshooting, system administration, security hygiene, and keeping daily
+                        operations running smoothly.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-5 rounded border border-term-border bg-term-panel hover:border-term-green/60 transition">
+                    <p class="text-xs text-term-green mb-2">[02] DEVELOPMENT</p>
+                    <h3 class="text-base font-semibold text-white">Clean Web &amp; Tools</h3>
+                    <p class="mt-2 text-sm text-term-muted leading-relaxed">
+                        Building fast, minimal web applications and internal utilities grounded in solid Computer
+                        Science fundamentals.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-5 rounded border border-term-border bg-term-panel hover:border-term-green/60 transition">
+                    <p class="text-xs text-term-green mb-2">[03] AUTOMATION</p>
+                    <h3 class="text-base font-semibold text-white">Linux &amp; Scripting</h3>
+                    <p class="mt-2 text-sm text-term-muted leading-relaxed">
+                        Automating repetitive administrative tasks, backups, and diagnostics with shell scripts and
+                        version-controlled workflows.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Featured Projects Preview -->
+        <section
+  class="py-14"
+  x-data="{
+    projects: [],
+    loading: true,
+    error: null,
+    get featuredProjects() {
+      return this.projects.filter(p => p.featured === true);
+    },
+    init() {
+      fetch('./data/projects.json')
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to load ./data/projects.json');
+          return res.json();
+        })
+        .then(data => {
+          this.projects = data;
+        })
+        .catch(err => {
+          this.error = err.message;
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    }
+  }"
+>
+  <div class="flex items-center justify-between mb-8">
+    <h2 class="text-sm uppercase tracking-wider text-term-green">
+      $ grep -i "featured: true" ./data/projects.json
+    </h2>
+    <a href="projects.html" class="text-xs text-term-muted hover:text-term-green transition">
+      view all projects -&gt;
+    </a>
+  </div>
+
+  <!-- Loading State -->
+  <p x-show="loading" class="text-xs text-term-muted">
+    // loading featured projects...
+  </p>
+
+  <!-- Error State -->
+  <div
+    x-show="!loading && error"
+    class="p-4 rounded border border-red-500/40 bg-term-panel text-xs text-red-400"
+    x-text="'[error] ' + error"
+  ></div>
+
+  <!-- Featured Projects Grid -->
+  <div
+    x-show="!loading && !error"
+    class="grid grid-cols-1 md:grid-cols-2 gap-6"
+  >
+    <template x-for="project in featuredProjects" :key="project.id">
+      <article
+        class="p-6 rounded border border-term-border bg-term-panel flex flex-col justify-between hover:border-term-green/60 transition"
+      >
+        <div>
+          <!-- Optional Showcase Image (static/<id>.png) -->
+          <template x-if="project.image">
+           
+          </template>
+
+          <div class="flex items-center justify-between text-xs text-term-muted mb-3">
+            <span class="text-term-green" x-text="project.tag"></span>
+            <span x-text="project.status || project.year"></span>
+          </div>
+
+          <h3 class="text-lg font-semibold text-white" x-text="project.title"></h3>
+
+          <p class="mt-2 text-sm text-term-muted leading-relaxed" x-text="project.summary"></p>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-term-border flex items-center justify-between gap-4 text-xs">
+          <span class="text-term-muted" x-text="project.stack.join(' · ')"></span>
+
+          <div class="flex items-center gap-3 shrink-0">
+            <template x-if="project.liveUrl">
+              <a
+                :href="project.liveUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-term-green hover:underline"
+              >
+                [live]
+              </a>
+            </template>
+
+            <a
+              :href="project.repoUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-term-green hover:underline"
+            >
+              [source]
+            </a>
+          </div>
+        </div>
+      </article>
+    </template>
+  </div>
+</section>
+
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="border-t border-term-border mt-12">
+        <div
+            class="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-term-muted">
+            <p>abenezer@portfolio:~$ exit 0</p>
+
+            <div class="flex items-center gap-5">
+                <a href="https://github.com/Abenezzer" target="_blank"
+                    class="hover:text-term-green transition">GitHub</a>
+                <a href="about.html" class="hover:text-term-green transition">About</a>
+                <a href="contact.html" class="hover:text-term-green transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
+
 </html>
