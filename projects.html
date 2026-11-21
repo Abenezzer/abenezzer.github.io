@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>abenezer@portfolio:~/projects$ — Projects Archive</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>abenezer@portfolio:~/projects$ — Projects Archive</title>
 
-  <!-- 1. Tailwind CSS v4 Browser CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- 1. Tailwind CSS v4 Browser CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <!-- 2. Terminal Theme Tokens -->
-  <style type="text/tailwindcss">
-    @theme {
+    <!-- 2. Terminal Theme Tokens -->
+    <style type="text/tailwindcss">
+        @theme {
       --color-term-bg: #0a0a0a;
       --color-term-panel: #111111;
       --color-term-border: #1f2937;
@@ -31,54 +32,49 @@
     }
   </style>
 
-  <!-- 3. Alpine.js v3 CDN -->
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- 3. Alpine.js v3 CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230a0a0a'/%3E%3Cpath d='M16 20l14 12-14 12' fill='none' stroke='%2322c55e' stroke-width='5.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='34' y1='44' x2='48' y2='44' stroke='%2322c55e' stroke-width='5.5' stroke-linecap='round'/%3E%3C/svg%3E" />
 </head>
-<body class="bg-term-bg text-term-text font-mono antialiased selection:bg-term-green selection:text-term-bg flex flex-col min-h-screen">
 
-  <!-- Top Navigation -->
-  <header
-    x-data="{ mobileOpen: false }"
-    class="border-b border-term-border sticky top-0 bg-term-bg/95 backdrop-blur-sm z-20"
-  >
-    <nav class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between text-sm">
-      <a href="index.html" class="text-term-green font-semibold tracking-tight hover:opacity-80 transition">
-        abenezer@portfolio<span class="text-term-muted">:~/projects$</span>
-      </a>
+<body
+    class="bg-term-bg text-term-text font-mono antialiased selection:bg-term-green selection:text-term-bg flex flex-col min-h-screen">
 
-      <!-- Desktop Links (About merged into Home hero; Contact on Home) -->
-      <div class="hidden sm:flex items-center gap-6 text-term-muted">
-        <a href="index.html" class="hover:text-term-green transition">~/home</a>
-        <a href="projects.html" class="text-term-green font-medium">~/projects</a>
-        <a href="index.html#contact" class="hover:text-term-green transition">~/contact</a>
-      </div>
+    <!-- Top Navigation -->
+    <header x-data="{ mobileOpen: false }"
+        class="border-b border-term-border sticky top-0 bg-term-bg/95 backdrop-blur-sm z-20">
+        <nav class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between text-sm">
+            <a href="index.html" class="text-term-green font-semibold tracking-tight hover:opacity-80 transition">
+                abenezer@portfolio<span class="text-term-muted">:~/projects$</span>
+            </a>
 
-      <!-- Mobile Menu Toggle -->
-      <button
-        @click="mobileOpen = !mobileOpen"
-        class="sm:hidden px-2.5 py-1 border border-term-border rounded text-xs text-term-muted hover:text-term-green hover:border-term-green transition cursor-pointer"
-        aria-label="Toggle Menu"
-      >
-        <span x-text="mobileOpen ? '[x]' : '[menu]'"></span>
-      </button>
-    </nav>
+            <!-- Desktop Links (About merged into Home hero; Contact on Home) -->
+            <div class="hidden sm:flex items-center gap-6 text-term-muted">
+                <a href="index.html" class="hover:text-term-green transition">~/home</a>
+                <a href="projects.html" class="text-term-green font-medium">~/projects</a>
+                <a href="index.html#contact" class="hover:text-term-green transition">~/contact</a>
+            </div>
 
-    <!-- Mobile Dropdown -->
-    <div
-      x-show="mobileOpen"
-      x-transition
-      class="sm:hidden border-t border-term-border bg-term-panel px-6 py-4 flex flex-col gap-3 text-sm text-term-muted"
-    >
-      <a href="index.html" class="hover:text-term-green transition">~/home</a>
-      <a href="projects.html" class="text-term-green font-medium">~/projects</a>
-      <a href="index.html#contact" class="hover:text-term-green transition">~/contact</a>
-    </div>
-  </header>
+            <!-- Mobile Menu Toggle -->
+            <button @click="mobileOpen = !mobileOpen"
+                class="sm:hidden px-2.5 py-1 border border-term-border rounded text-xs text-term-muted hover:text-term-green hover:border-term-green transition cursor-pointer"
+                aria-label="Toggle Menu">
+                <span x-text="mobileOpen ? '[x]' : '[menu]'"></span>
+            </button>
+        </nav>
 
-  <!-- Main Content -->
-  <main
-    class="max-w-4xl mx-auto px-6 py-12 md:py-16 flex-1 w-full"
-    x-data="{
+        <!-- Mobile Dropdown -->
+        <div x-show="mobileOpen" x-transition
+            class="sm:hidden border-t border-term-border bg-term-panel px-6 py-4 flex flex-col gap-3 text-sm text-term-muted">
+            <a href="index.html" class="hover:text-term-green transition">~/home</a>
+            <a href="projects.html" class="text-term-green font-medium">~/projects</a>
+            <a href="index.html#contact" class="hover:text-term-green transition">~/contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 py-12 md:py-16 flex-1 w-full" x-data="{
       allProjects: [],
       visibleProjects: [],
       lastLoadedId: 0,
@@ -122,160 +118,140 @@
             this.loading = false;
           });
       }
-    }"
-  >
+    }">
 
-    <!-- Page Header -->
-    <section class="pb-10 border-b border-term-border">
-      <p class="text-sm text-term-green mb-2">$ ls -la ./projects --detailed</p>
-      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white">
-        Projects Archive<span class="text-term-green cursor-blink">_</span>
-      </h1>
-      <p class="mt-3 text-sm md:text-base text-term-muted max-w-2xl leading-relaxed">
-        Detailed log of builds, scripts, and infrastructure tools—sourced directly from
-        <code class="text-term-text">data/projects.json</code> and paginated by project ID.
-      </p>
+        <!-- Page Header -->
+        <section class="pb-10 border-b border-term-border">
+            <p class="text-sm text-term-green mb-2">$ ls -la ./projects --detailed</p>
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                Projects Archive<span class="text-term-green cursor-blink">_</span>
+            </h1>
+            <p class="mt-3 text-sm md:text-base text-term-muted max-w-2xl leading-relaxed">
+                Detailed log of builds, scripts, and infrastructure tools—sourced directly from
+                <code class="text-term-text">data/projects.json</code> and paginated by project ID.
+            </p>
 
-      <!-- Pagination Status Bar -->
-      <div
-        x-show="!loading && !error"
-        class="mt-6 flex flex-wrap items-center justify-between gap-2 text-xs text-term-muted"
-      >
-        <span>
-          SHOWING <strong class="text-term-green" x-text="visibleProjects.length"></strong> OF
-          <strong class="text-term-text" x-text="allProjects.length"></strong> PROJECTS
-        </span>
-        <span>
-          CURSOR: <strong class="text-term-green" x-text="'id > ' + lastLoadedId"></strong>
-        </span>
-      </div>
-    </section>
+            <!-- Pagination Status Bar -->
+            <div x-show="!loading && !error"
+                class="mt-6 flex flex-wrap items-center justify-between gap-2 text-xs text-term-muted">
+                <span>
+                    SHOWING <strong class="text-term-green" x-text="visibleProjects.length"></strong> OF
+                    <strong class="text-term-text" x-text="allProjects.length"></strong> PROJECTS
+                </span>
+                <span>
+                    CURSOR: <strong class="text-term-green" x-text="'id > ' + lastLoadedId"></strong>
+                </span>
+            </div>
+        </section>
 
-    <!-- Loading State -->
-    <div x-show="loading" class="py-12 text-xs text-term-muted">
-      // fetching ./data/projects.json...
-    </div>
+        <!-- Loading State -->
+        <div x-show="loading" class="py-12 text-xs text-term-muted">
+            // fetching ./data/projects.json...
+        </div>
 
-    <!-- Error State -->
-    <div
-      x-show="!loading && error"
-      class="my-8 p-4 rounded border border-red-500/40 bg-term-panel text-xs text-red-400"
-      x-text="'[error] ' + error"
-    ></div>
+        <!-- Error State -->
+        <div x-show="!loading && error"
+            class="my-8 p-4 rounded border border-red-500/40 bg-term-panel text-xs text-red-400"
+            x-text="'[error] ' + error"></div>
 
-    <!-- Detailed Projects List / Grid -->
-    <section x-show="!loading && !error" class="py-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <template x-for="project in visibleProjects" :key="project.id">
-          <article
-            class="p-6 rounded border border-term-border bg-term-panel flex flex-col justify-between hover:border-term-green/60 transition"
-          >
-            <div>
-              <!-- Optional Showcase Image (static/<id>.png) -->
-              <template x-if="project.image">
-                <div class="mb-4 overflow-hidden rounded border border-term-border bg-term-bg">
-                  <img
-                    :src="project.image"
-                    :alt="project.title + ' preview'"
-                    class="w-full h-44 object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </template>
+        <!-- Detailed Projects List / Grid -->
+        <section x-show="!loading && !error" class="py-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <template x-for="project in visibleProjects" :key="project.id">
+                    <article
+                        class="p-6 rounded border border-term-border bg-term-panel flex flex-col justify-between hover:border-term-green/60 transition">
+                        <div>
+                            <!-- Optional Showcase Image (static/<id>.png) -->
+                            <template x-if="project.image">
+                                <div class="mb-4 overflow-hidden rounded border border-term-border bg-term-bg">
+                                    <img :src="project.image" :alt="project.title + ' preview'"
+                                        class="w-full h-44 object-cover" loading="lazy" />
+                                </div>
+                            </template>
 
-              <!-- Top Metadata Row -->
-              <div class="flex items-center justify-between gap-2 text-xs text-term-muted mb-2">
-                <span class="text-term-green" x-text="'#' + project.id + ' // ' + project.tag"></span>
-                <span x-text="project.status || project.year"></span>
-              </div>
+                            <!-- Top Metadata Row -->
+                            <div class="flex items-center justify-between gap-2 text-xs text-term-muted mb-2">
+                                <span class="text-term-green" x-text="'#' + project.id + ' // ' + project.tag"></span>
+                                <span x-text="project.status || project.year"></span>
+                            </div>
 
-              <!-- Title & Year/Category -->
-              <h2 class="text-lg font-semibold text-white" x-text="project.title"></h2>
-              <p class="mt-1 text-xs text-term-muted">
-                <span>category: <span class="text-term-text" x-text="project.category"></span></span>
-                <template x-if="project.year">
-                  <span> · year: <span class="text-term-text" x-text="project.year"></span></span>
+                            <!-- Title & Year/Category -->
+                            <h2 class="text-lg font-semibold text-white" x-text="project.title"></h2>
+                            <p class="mt-1 text-xs text-term-muted">
+                                <span>category: <span class="text-term-text" x-text="project.category"></span></span>
+                                <template x-if="project.year">
+                                    <span> · year: <span class="text-term-text" x-text="project.year"></span></span>
+                                </template>
+                            </p>
+
+                            <!-- Detailed Description -->
+                            <p class="mt-3 text-sm text-term-muted leading-relaxed" x-text="project.summary"></p>
+
+                            <!-- Tech Stack Pills -->
+                            <template x-if="Array.isArray(project.stack) && project.stack.length > 0">
+                                <div class="mt-4 flex flex-wrap gap-1.5">
+                                    <template x-for="tech in project.stack" :key="tech">
+                                        <span
+                                            class="px-2 py-0.5 text-xs rounded border border-term-border bg-term-bg text-term-text"
+                                            x-text="tech"></span>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Footer Links -->
+                        <div class="mt-6 pt-4 border-t border-term-border flex items-center justify-between text-xs">
+                            <span class="text-term-muted" x-text="'id=' + project.id"></span>
+
+                            <div class="flex items-center gap-4">
+                                <template x-if="project.liveUrl">
+                                    <a :href="project.liveUrl" target="_blank" rel="noopener noreferrer"
+                                        class="text-term-green hover:underline underline-offset-4">
+                                        [live]
+                                    </a>
+                                </template>
+
+                                <template x-if="project.repoUrl">
+                                    <a :href="project.repoUrl" target="_blank" rel="noopener noreferrer"
+                                        class="text-term-green hover:underline underline-offset-4">
+                                        [source]
+                                    </a>
+                                </template>
+                            </div>
+                        </div>
+                    </article>
                 </template>
-              </p>
-
-              <!-- Detailed Description -->
-              <p class="mt-3 text-sm text-term-muted leading-relaxed" x-text="project.summary"></p>
-
-              <!-- Tech Stack Pills -->
-              <template x-if="Array.isArray(project.stack) && project.stack.length > 0">
-                <div class="mt-4 flex flex-wrap gap-1.5">
-                  <template x-for="tech in project.stack" :key="tech">
-                    <span
-                      class="px-2 py-0.5 text-xs rounded border border-term-border bg-term-bg text-term-text"
-                      x-text="tech"
-                    ></span>
-                  </template>
-                </div>
-              </template>
             </div>
 
-            <!-- Footer Links -->
-            <div class="mt-6 pt-4 border-t border-term-border flex items-center justify-between text-xs">
-              <span class="text-term-muted" x-text="'id=' + project.id"></span>
+            <!-- Show More Button (ID-based batch of 6) -->
+            <div class="mt-10 flex flex-col items-center gap-3">
+                <button x-show="hasMore" @click="loadNextBatch()"
+                    class="px-6 py-2.5 rounded border border-term-green bg-term-panel text-term-green text-sm font-medium hover:bg-term-green hover:text-term-bg transition cursor-pointer">
+                    <span>$ show-more</span>
+                </button>
 
-              <div class="flex items-center gap-4">
-                <template x-if="project.liveUrl">
-                  <a
-                    :href="project.liveUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-term-green hover:underline underline-offset-4"
-                  >
-                    [live]
-                  </a>
-                </template>
-
-                <template x-if="project.repoUrl">
-                  <a
-                    :href="project.repoUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-term-green hover:underline underline-offset-4"
-                  >
-                    [source]
-                  </a>
-                </template>
-              </div>
+                <p x-show="!hasMore && allProjects.length > 0" class="text-xs text-term-muted">
+                    <span x-text="'// EOF — displayed all ' + allProjects.length + ' projects'"></span>
+                </p>
             </div>
-          </article>
-        </template>
-      </div>
+        </section>
 
-      <!-- Show More Button (ID-based batch of 6) -->
-      <div class="mt-10 flex flex-col items-center gap-3">
-        <button
-          x-show="hasMore"
-          @click="loadNextBatch()"
-          class="px-6 py-2.5 rounded border border-term-green bg-term-panel text-term-green text-sm font-medium hover:bg-term-green hover:text-term-bg transition cursor-pointer"
-        >
-          <span>$ show-more</span>
-        </button>
+    </main>
 
-        <p x-show="!hasMore && allProjects.length > 0" class="text-xs text-term-muted">
-          <span x-text="'// EOF — displayed all ' + allProjects.length + ' projects'"></span>
-        </p>
-      </div>
-    </section>
+    <!-- Minimal Footer -->
+    <footer class="border-t border-term-border mt-12">
+        <div
+            class="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-term-muted">
+            <p>abenezer@portfolio:~/projects$ exit 0</p>
 
-  </main>
-
-  <!-- Minimal Footer -->
-  <footer class="border-t border-term-border mt-12">
-    <div class="max-w-4xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-term-muted">
-      <p>abenezer@portfolio:~/projects$ exit 0</p>
-
-      <div class="flex items-center gap-5">
-        <a href="index.html" class="hover:text-term-green transition">Home</a>
-        <a href="projects.html" class="hover:text-term-green transition">Projects</a>
-        <a href="index.html#contact" class="hover:text-term-green transition">Contact</a>
-      </div>
-    </div>
-  </footer>
+            <div class="flex items-center gap-5">
+                <a href="index.html" class="hover:text-term-green transition">Home</a>
+                <a href="projects.html" class="hover:text-term-green transition">Projects</a>
+                <a href="index.html#contact" class="hover:text-term-green transition">Contact</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
+
 </html>
