@@ -242,11 +242,14 @@
                                         [Live_Review]
                                     </a>
                                 </template>
+                                 <template x-if="project.repoUrl">
 
-                                <a :href="project.repoUrl" target="_blank" rel="noopener noreferrer"
-                                    class="text-term-green hover:underline">
-                                    [github_link]
-                                </a>
+                                    <a :href="project.repoUrl" target="_blank" rel="noopener noreferrer"
+                                        class="text-term-green hover:underline">
+                                        [github_link]
+                                    </a>
+
+                                </template>
                             </div>
                         </div>
                     </article>
