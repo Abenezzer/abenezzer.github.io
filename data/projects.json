@@ -1,6 +1,19 @@
 [
   {
     "id": 1,
+    "title": "British International School Website",
+    "category": "web",
+    "tag": "WEB // WORDPRESS",
+    "year": "2026",
+    "featured": true,
+    "status": "LIVE",
+    "image": "british.png",
+    "summary": "Custom WordPress website and theme crafted to represent British International School, built with Tailwind CSS and Alpine.js and deployed on a VPS.",
+    "stack": ["WordPress", "Custom Theme", "Tailwind CSS", "Alpine.js", "VPS"],
+    "liveUrl": "https://bisethiopia.edu.et"
+  },
+  {
+    "id": 2,
     "title": "Ethio IT Jobs Alert Bot",
     "category": "automation",
     "tag": "BOT // AUTOMATION",
@@ -13,7 +26,7 @@
     "liveUrl": "https://t.me/ethio_it_jobs"
   },
   {
-    "id": 2,
+    "id": 3,
     "title": "abenezzer.github.io",
     "category": "web",
     "tag": "WEB // PORTFOLIO",
@@ -26,7 +39,7 @@
     "liveUrl": "https://abenezzer.github.io"
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "System Health & Net Check CLI",
     "category": "it",
     "tag": "IT // AUTOMATION",
