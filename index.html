@@ -217,8 +217,12 @@
                         class="p-6 rounded border border-term-border bg-term-panel flex flex-col justify-between hover:border-term-green/60 transition">
                         <div>
 
+                            <!-- Optional Showcase Image (static/<id>.png) -->
                             <template x-if="project.image">
-
+                                <div class="mb-4 overflow-hidden rounded border border-term-border bg-term-bg">
+                                    <img :src="project.image" :alt="project.title + ' preview'"
+                                        class="w-full h-44 object-cover" loading="lazy" />
+                                </div>
                             </template>
 
                             <div class="flex items-center justify-between text-xs text-term-muted mb-3">
