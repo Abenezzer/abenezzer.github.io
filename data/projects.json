@@ -7,7 +7,7 @@
     "year": "2026",
     "featured": true,
     "status": "LIVE",
-    "image": "british.png",
+    "image": "static/british.png",
     "summary": "Custom WordPress website and theme crafted to represent British International School, built with Tailwind CSS and Alpine.js and deployed on a VPS.",
     "stack": ["WordPress", "Custom Theme", "Tailwind CSS", "Alpine.js", "VPS"],
     "liveUrl": "https://bisethiopia.edu.et"
@@ -23,6 +23,7 @@
     "summary": "Zero-cost automated IT job aggregator for Ethiopia that scrapes public Telegram channels, filters tech roles via Regex, deduplicates listings with SQLite, and broadcasts daily to @ethio_it_jobs telegram channel via GitHub Actions.",
     "stack": ["Python", "BeautifulSoup4", "SQLite", "Telegram Bot API", "GitHub Actions"],
     "repoUrl": "https://github.com/Abenezzer/Ethio-IT-jobs-alert-bot.git",
+    "image": "static/bot.png",
     "liveUrl": "https://t.me/ethio_it_jobs"
   },
   {
@@ -35,6 +36,8 @@
     "status": "LIVE",
     "summary": "Minimal terminal-inspired personal portfolio built from scratch with semantic HTML, Tailwind CSS, and Alpine.js on GitHub Pages.",
     "stack": ["HTML", "Tailwind CSS", "Alpine.js"],
+    "image": "static/portfolio.png",
+
     "repoUrl": "https://github.com/Abenezzer/abenezzer.github.io",
     "liveUrl": "https://abenezzer.github.io"
   },
